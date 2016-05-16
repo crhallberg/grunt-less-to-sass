@@ -5,6 +5,8 @@
  */
 module.exports = {
   pattern: /(\s+)\.([\w\-]*)\s*\((.*)\);/gi,
-  replacement: '$1@include $2($3);',
+  replacement: function(match, indent, $2, $3) {
+    return indent + '@include ' + $2 + '(' + $3.replace(/;/g, ',') + ');';
+  },
   order: 2
 };
