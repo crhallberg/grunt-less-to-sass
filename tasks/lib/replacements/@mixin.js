@@ -5,6 +5,8 @@
  */
 module.exports = {
   pattern: /\.([\w\-]*)\s*\((.*)\)\s*\{/gi,
-  replacement: '@mixin $1($2){',
+  replacement: function (match, $1, $2) {
+    return '@mixin ' + $1 + '(' + $2.replace(/;/g, ',') + ') {';
+  },
   order: 2
 };
